@@ -62,6 +62,9 @@ a:hover {
   border-bottom: none; }
 .sui-nav li.active > ul {
   display: block; }
+@media (max-width: 768px) {
+  .sui-nav .hidden-in-mobile {
+    display: none; } }
 
 .sui-nav.slide-nav {
   position: fixed;

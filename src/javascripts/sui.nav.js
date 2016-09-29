@@ -6,7 +6,7 @@
 			defaultOptions = {
 				toggleName: '.MenuToggle', // 控制菜单开关类
 				direction: 'left', // 菜单切换方向
-				trigger: 'click', // 展开方式
+				trigger: 'click', // 展开方式，单击展示下层或是悬浮展示
 				openingSpeed: 400, // 打开菜单动画时间
 				closingSpeed: 400, // 关闭菜单动画时间
 				closingCascade: true, // 级联关闭所有菜单，仅对垂直导航菜单有效

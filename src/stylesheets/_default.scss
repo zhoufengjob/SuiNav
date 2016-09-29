@@ -65,6 +65,11 @@
     li.active>ul {
         display: block;
     }
+    .hidden-in-mobile {
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 }
 .sui-nav.slide-nav {
     position: fixed;
