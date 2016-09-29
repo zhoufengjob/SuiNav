@@ -1,0 +1,77 @@
+.sui-nav.horizontal {
+    width: 100%;
+    min-height: 41px;
+    border: 1px solid #eee;
+    clear: both;
+    ul {
+        padding: 0 !important;
+        background-color: white;
+        z-index: 999;
+        margin-bottom: 0;
+        > li {
+            line-height: 40px;
+            min-width: $itemWidth;
+            &:hover {
+                background-color: #d8d8d84d;
+            }
+        }
+    }
+    .sui-nav-wrapper {
+        width: 980px;
+        margin: 0 auto;
+    }
+    .sui-nav-wrapper,
+    .sui-nav-wrapper-fluid {
+        > ul {
+            position: relative;
+            float: left;
+            list-style: none;
+            > li {
+                position: relative;
+                float: left;
+                cursor: pointer;
+                border-bottom: none;
+                min-width: auto;
+                > a {
+                    padding: 10px 20px;
+                }
+                > ul {
+                    float: none;
+                    position: absolute;
+                    left: 0;
+                    border: 1px solid #eee;
+                    > li {
+                        float: none;
+                        width: $itemWidth;
+                        ul {
+                            position: absolute;
+                            left: 100%;
+                            top: 0;
+                            border: 1px solid #eee;
+                        }
+                    }
+                }
+            }
+        }
+        > ul.pull-right {
+            float: right;
+            > li > ul {
+                right: 0;
+                left: auto;
+                >li ul {
+                    left: -101%;
+                }
+            }
+        }
+    }
+    .nav-border>ul {
+        border: none;
+        border-radius: 0;
+    }
+    .nav-border.nav-line li {
+        border-bottom: none;
+    }
+    .nav-border.nav-line li:last-child {
+        border-bottom: none;
+    }
+}

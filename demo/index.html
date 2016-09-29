@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>SuiNav</title>
+		<link rel="stylesheet" type="text/css" href="../dist/css/sui.nav.css" />
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../dist/js/sui.nav.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.topbar {
+				height: 40px;
+				border-bottom: 1px solid #eee;
+			}
+			
+			.topbar .topbar-container {
+				width: 980px;
+				margin: 0 auto;
+			}
+			
+			.container {
+				width: 980px;
+				margin: 10px auto;
+			}
+			
+			.container .body {
+				padding: 0px 10px;
+				position: relative;
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="sui_nav" class="sui-nav horizontal">
+			<div class="sui-nav-wrapper nav-border nav-line">
+				<ul>
+					<li><a>Home</a></li>
+					<li><a href="#"><i class="icon-thumbs-up"></i>About</a>
+						<ul>
+							<li><a href="#">Level21</a></li>
+							<li><a href="#">Level22</a></li>
+							<li><a href="#">Level23</a>
+								<span class="indicator">&gt;</span>
+								<ul>
+									<li><a href="#">Level31</a></li>
+									<li><a href="#">Level32</a></li>
+									<li><a href="#">Level33</a>
+										<ul>
+											<li><a href="#">Level331</a></li>
+											<li><a href="#">Level332</a></li>
+											<li><a href="#">Level333</a></li>
+											<li><a href="#">Level334</a></li>
+										</ul>
+										<span class="indicator">&gt;</span>
+									</li>
+									<li><a href="#">Level34</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Level24</a></li>
+						</ul>
+					</li>
+					<li><a>Hello</a></li>
+				</ul>
+
+				<ul class="pull-right">
+					<li><a>Sign in</a></li>
+					<li><a>Sing up</a>
+						<ul>
+							<li><a>Right</a></li>
+							<li><a>Right</a>
+								<ul>
+									<li><a>Right</a></li>
+									<li><a>Right</a></li>
+									<li><a>Right</a></li>
+								</ul>
+							</li>
+							<li><a>Others</a></li>
+						</ul>
+					</li>
+					<li><a>Others</a></li>
+				</ul>
+			</div>
+		</div>
+		<br />
+		<div class="container ">
+			<div id="sui_nav2" class="sui-nav">
+				<script type="text/javascript">
+					document.write(document.getElementById('sui_nav').innerHTML);
+					var topbar;
+					$(function() {
+						topbar = $('#sui_nav').SuiNav({
+
+						});
+						var navbar = $('#sui_nav2').SuiNav({});
+						$('.MenuToggle').click(function() {
+							console.log("click");
+							topbar.toggle();
+						});
+					});
+				</script>
+			</div>
+			<div class="body">
+				<p>
+					<button class="MenuToggle">单击此处显示/关闭导航</button>
+				</p>
+				<p>介绍以及代码等待完善中，更多请查看源码</p>
+				<pre>
+&lt;div id="sui_nav" class="sui-nav horizontal"&gt;
+	&lt;div class="sui-nav-wrapper nav-border nav-line"&gt;
+		&lt;ul&gt;
+			&lt;li&gt; Home &lt;/li&gt;
+			&lt;li&gt; About &lt;/li&gt;
+			&lt;li&gt; Hello &lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+				</pre>
+			</div>
+		</div>
+	</body>
+
+</html>

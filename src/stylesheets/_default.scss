@@ -1,0 +1,112 @@
+.sui-nav {
+    font-size: $baseSize;
+    position: relative;
+    color: $baseColor;
+    @media (max-width: 768px) {
+        display: none;
+    }
+    .sui-nav-wrapper,
+    .sui-nav-wrapper-fluid {
+        > ul {
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+    }
+    ul {
+        list-style: none;
+        padding-left: 20px;
+        cursor: pointer;
+        > li {
+            line-height: 36px;
+            min-width: $itemWidth;
+            > a {
+                padding: 0 20px;
+            }
+            span.indicator {
+                position: absolute;
+                color: #bababa;
+                top: 0;
+                right: 0;
+                font-size: 14px;
+                -webkit-transition: color 0.2s linear;
+                -moz-transition: color 0.2s linear;
+                -o-transition: color 0.2s linear;
+                transition: color 0.2s linear;
+                padding-right: 6px;
+            }
+        }
+    }
+    li {
+        > ul {
+            display: none;
+            border-top: 1px solid #eee;
+            >li {
+                float: none;
+                position: relative;
+                min-width: $itemWidth;
+                &:hover {
+                    background-color: #FFFFFF;
+                }
+            }
+        }
+    }
+}
+.sui-nav {
+    .nav-border>ul {
+        border: 1px solid #eee;
+        border-radius: 4px;
+    }
+    .nav-border.nav-line li {
+        border-bottom: 1px solid #eee;
+    }
+    .nav-border.nav-line li:last-child {
+        border-bottom: none;
+    }
+    li.active>ul {
+        display: block;
+    }
+}
+.sui-nav.slide-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: none;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-transition: -webkit-transform 0.4s,box-shadow 0.4s;
+    transition: transform 0.4s,box-shadow 0.4s;
+    max-width: 260px;
+    @media (max-width: 768px) {
+        display: block;
+    }
+    &.active {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+.sui-nav.nav-mask {
+    display: block;
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    z-index: 9090;
+    width: 200%;
+    height: 200%;
+    background-color: rgba(0,0,0,0.8);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.4s,visibility 0.4s;
+    transition: opacity 0.4s,visibility 0.4s;
+    &.active {
+        visibility: visible;
+        opacity: 0.6;
+    }
+}

@@ -1,0 +1,18 @@
+$baseColor: #222;
+$linkColor: #666;
+$baseSize: 14px;
+$itemWidth: 140px;
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+a {
+    color: $baseColor;
+    text-decoration: none;
+}
+a:active,
+a:hover {
+    color: $baseColor;
+    text-decoration: none;
+}
