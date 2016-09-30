@@ -12,10 +12,15 @@ a:hover {
   color: #222;
   text-decoration: none; }
 
+a:focus {
+  outline: none;
+  text-decoration: none; }
+
 .sui-nav {
   font-size: 14px;
   position: relative;
-  color: #222; }
+  color: #222;
+  z-index: 10; }
   @media (max-width: 768px) {
     .sui-nav {
       display: none; } }
@@ -23,6 +28,9 @@ a:hover {
   .sui-nav .sui-nav-wrapper-fluid > ul {
     padding-left: 0;
     margin-bottom: 20px; }
+  .sui-nav .sui-nav-wrapper > ul.pull-right,
+  .sui-nav .sui-nav-wrapper-fluid > ul.pull-right {
+    float: none !important; }
   .sui-nav ul {
     list-style: none;
     padding-left: 20px;
@@ -63,8 +71,15 @@ a:hover {
 .sui-nav li.active > ul {
   display: block; }
 @media (max-width: 768px) {
-  .sui-nav .hidden-in-mobile {
+  .sui-nav .hide-in-mobile {
     display: none; } }
+.sui-nav .show-in-mobile {
+  display: none; }
+  @media (max-width: 768px) {
+    .sui-nav .show-in-mobile {
+      display: block; } }
+.sui-nav .show-in-horizontal {
+  display: none; }
 
 .sui-nav.slide-nav {
   position: fixed;
@@ -111,12 +126,12 @@ a:hover {
 .sui-nav.horizontal {
   width: 100%;
   min-height: 41px;
-  border: 1px solid #eee;
-  clear: both; }
+  border-bottom: 1px solid #eee;
+  clear: both;
+  z-index: 999; }
   .sui-nav.horizontal ul {
     padding: 0 !important;
     background-color: white;
-    z-index: 999;
     margin-bottom: 0; }
     .sui-nav.horizontal ul > li {
       line-height: 40px;
@@ -126,6 +141,12 @@ a:hover {
   .sui-nav.horizontal .sui-nav-wrapper {
     width: 980px;
     margin: 0 auto; }
+    @media (min-width: 1600px) {
+      .sui-nav.horizontal .sui-nav-wrapper {
+        width: 1280px; } }
+    @media (min-width: 1920px) {
+      .sui-nav.horizontal .sui-nav-wrapper {
+        width: 1600px; } }
   .sui-nav.horizontal .sui-nav-wrapper > ul,
   .sui-nav.horizontal .sui-nav-wrapper-fluid > ul {
     position: relative;
@@ -159,7 +180,7 @@ a:hover {
             border: 1px solid #eee; }
   .sui-nav.horizontal .sui-nav-wrapper > ul.pull-right,
   .sui-nav.horizontal .sui-nav-wrapper-fluid > ul.pull-right {
-    float: right; }
+    float: right !important; }
     .sui-nav.horizontal .sui-nav-wrapper > ul.pull-right > li > ul,
     .sui-nav.horizontal .sui-nav-wrapper-fluid > ul.pull-right > li > ul {
       right: 0;
@@ -174,5 +195,10 @@ a:hover {
     border-bottom: none; }
   .sui-nav.horizontal .nav-border.nav-line li:last-child {
     border-bottom: none; }
+
+.sui-nav.horizontal .show-in-horizontal {
+  display: block !important; }
+.sui-nav.horizontal .hide-in-horizontal {
+  display: none !important; }
 
 /*# sourceMappingURL=sui.nav.css.map */

@@ -3,6 +3,7 @@
 	$.fn.SuiNav = function(options) {
 		var menu = this,
 			that = this,
+			isHiding = false,
 			defaultOptions = {
 				toggleName: '.MenuToggle', // 控制菜单开关类
 				direction: 'left', // 菜单切换方向
@@ -26,7 +27,11 @@
 						$(this).children('ul').stop().hide(defaultOptions.closingSpeed);
 					});
 				} else {
-					$(that).css('float', 'left');
+//					这里加入float可以让宽度自适应，但是会有其它的布局问题，视情况去除注释
+//					$(that).css({
+//						'float': 'left',
+//						'margin-right': '10px'
+//					});
 					if(defaultOptions.trigger == 'click') {
 						$(that).find('li').click(function() {
 							if("none" == $(this).children('ul').css('display'))
@@ -56,6 +61,8 @@
 				$(window).resize(resize);
 			},
 			showMenu = function() {
+				if(isHiding)
+					return;
 				$(document.body).append('<div class="sui-nav slide-nav"></div>');
 				$(document.body).append('<div class="sui-nav nav-mask"></div>');
 				$('.slide-nav').html($(that).html());
@@ -80,12 +87,16 @@
 				}, 20);
 			},
 			hideMenu = function() {
+				if(isHiding)
+					return;
+				isHiding = true;
 				$('.slide-nav').find('li').unbind();
 				$('.slide-nav').removeClass('active');
 				$('.nav-mask').removeClass('active');
 				setTimeout(function() {
 					$('.slide-nav').remove();
 					$('.nav-mask').remove();
+					isHiding = false;
 				}, 600);
 			},
 			resize = function() {},

@@ -16,3 +16,7 @@ a:hover {
     color: $baseColor;
     text-decoration: none;
 }
+a:focus {
+    outline: none;
+    text-decoration: none;
+}

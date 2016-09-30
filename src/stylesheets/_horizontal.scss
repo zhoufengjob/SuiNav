@@ -1,12 +1,12 @@
 .sui-nav.horizontal {
     width: 100%;
     min-height: 41px;
-    border: 1px solid #eee;
+    border-bottom: 1px solid #eee;
     clear: both;
+    z-index: 999;
     ul {
         padding: 0 !important;
         background-color: white;
-        z-index: 999;
         margin-bottom: 0;
         > li {
             line-height: 40px;
@@ -19,6 +19,12 @@
     .sui-nav-wrapper {
         width: 980px;
         margin: 0 auto;
+        @media (min-width: 1600px) {
+            width: 1280px;
+        }
+        @media (min-width: 1920px) {
+            width: 1600px;
+        }
     }
     .sui-nav-wrapper,
     .sui-nav-wrapper-fluid {
@@ -54,7 +60,7 @@
             }
         }
         > ul.pull-right {
-            float: right;
+            float: right !important;
             > li > ul {
                 right: 0;
                 left: auto;
@@ -73,5 +79,13 @@
     }
     .nav-border.nav-line li:last-child {
         border-bottom: none;
+    }
+}
+.sui-nav.horizontal {
+    .show-in-horizontal {
+        display: block !important;
+    }
+    .hide-in-horizontal {
+        display: none !important;
     }
 }
