@@ -1,5 +1,7 @@
 # SuiNav
-同步实现水平导航、垂直导航、侧滑导航，无限树形； 
+同步实现水平导航、垂直导航、侧滑导航，无限树形；   
+详细文档链接：[http://docs.suibinc.com/SuiNav](http://docs.suibinc.com/SuiNav)  
+
 ```javascript
 <script type="text/javascript">
     var navbar = $('#sui_nav').SuiNav({
