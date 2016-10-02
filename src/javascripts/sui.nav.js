@@ -4,6 +4,7 @@
 		var menu = this,
 			that = this,
 			isHiding = false,
+			_event = 0, // 这个临时变量是处理多级树事件判断的，很重要
 			defaultOptions = {
 				toggleName: '.MenuToggle', // 控制菜单开关类
 				direction: 'left', // 菜单切换方向
@@ -19,7 +20,7 @@
 			that = $(this).find('.sui-nav')[0];
 		}
 		defaultOptions = $.extend({}, defaultOptions, options);
-		var initMenu = function() {
+		var _init = function() {
 				if($(that).hasClass('horizontal')) {
 					$(that).find('li').hover(function() {
 						$(this).children('ul').stop().show(defaultOptions.openingSpeed);
@@ -27,13 +28,21 @@
 						$(this).children('ul').stop().hide(defaultOptions.closingSpeed);
 					});
 				} else {
-//					这里加入float可以让宽度自适应，但是会有其它的布局问题，视情况去除注释
-//					$(that).css({
-//						'float': 'left',
-//						'margin-right': '10px'
-//					});
+					// 这里加入float可以让宽度自适应，但是会有其它的布局问题，视情况去除注释
+					// $(that).css({
+					//		'float': 'left',
+					//		'margin-right': '10px'
+					//	});
 					if(defaultOptions.trigger == 'click') {
 						$(that).find('li').click(function() {
+							if(_event != 0) {
+								// 这里很重要，处理事件回调
+								if($(this).parent().parent().parent().hasClass('sui-nav')) {
+									_event = 0;
+									console.log('parent');
+								}
+								return;
+							}
 							if("none" == $(this).children('ul').css('display'))
 								$(this).children('ul').slideDown(defaultOptions.openingSpeed);
 							else {
@@ -43,7 +52,11 @@
 									$(this).children('ul').slideUp(defaultOptions.closingSpeed);
 								}
 							}
-							return false;
+							_event++;
+							if($(this).parent().parent().parent().hasClass('sui-nav')) {
+								_event = 0;
+								console.log('parent');
+							}
 						});
 					} else if(defaultOptions.trigger == 'hover') {
 						$(that).find('li').hover(function() {
@@ -54,19 +67,26 @@
 							} else {
 								$(this).children('ul').slideUp(defaultOptions.closingSpeed);
 							}
-
 						});
 					}
 				}
-				$(window).resize(resize);
+				$(window).resize(_resize);
 			},
-			showMenu = function() {
+			_show = function() {
 				if(isHiding)
 					return;
 				$(document.body).append('<div class="sui-nav slide-nav"></div>');
 				$(document.body).append('<div class="sui-nav nav-mask"></div>');
 				$('.slide-nav').html($(that).html());
 				$('.slide-nav').find('li').click(function() {
+					if(_event != 0) {
+						// 这里很重要，处理事件回调
+						if($(this).parent().parent().parent().hasClass('sui-nav')) {
+							_event = 0;
+							console.log('parent');
+						}
+						return;
+					}
 					if("none" == $(this).children('ul').css('display'))
 						$(this).children('ul').slideDown(defaultOptions.openingSpeed);
 					else {
@@ -76,17 +96,22 @@
 							$(this).children('ul').slideUp(defaultOptions.closingSpeed);
 						}
 					}
-					return false;
+					_event++;
+					if($(this).parent().parent().parent().hasClass('sui-nav')) {
+						_event = 0;
+						console.log('parent');
+					}
 				});
 				$('.nav-mask').click(function() {
-					hideMenu();
+					_hide();
 				});
+				// 某些浏览器有毒，加个小小的延迟让动画完整展示
 				setTimeout(function() {
 					$('.slide-nav').toggleClass('active');
 					$('.nav-mask').toggleClass('active');
 				}, 20);
 			},
-			hideMenu = function() {
+			_hide = function() {
 				if(isHiding)
 					return;
 				isHiding = true;
@@ -99,23 +124,36 @@
 					isHiding = false;
 				}, 600);
 			},
-			resize = function() {},
-			destroyMenu = function() {
+			_toggle = function() {
+				($('.slide-nav').length > 0) ? _hide(): _show();
+			},
+			_resize = function() {
+				// 窗口改变时需要完成的事情，预留着吧
+			},
+			_create = function(id, configs, options) {
+				var menuHtml,
+					menuId = configs.menuId || 'idSuiNav',
+					menuType = configs.menuType || 'default';
+				if(menuType == 'horizontal') {
+					menuHtml = '<div id="' + menuId + '" class="sui-nav horizontal">';
+				} else {
+					menuHtml = '<div id="' + menuId + '" class="sui-nav">';
+				}
+				menuHtml = menuHtml + $(that).html() + '</div>';
+				$('#' + id).html(menuHtml);
+				return $('#' + id).SuiNav(options);
+			},
+			_destroy = function() {
 				$('.' + defaultOptions.toggleName).unbind();
 			};
-		resize();
-		initMenu();
+		_resize();
+		_init();
 		return {
-			show: showMenu,
-			hide: hideMenu,
-			toggle: function() {
-				if($('.slide-nav').length > 0) {
-					hideMenu();
-				} else {
-					showMenu();
-				}
-			},
-			destroy: destroyMenu
+			show: _show,
+			hide: _hide,
+			toggle: _toggle,
+			create: _create,
+			destroy: _destroy
 		};
 	};
 })($);

@@ -9,6 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="../dist/css/sui.nav.css" />
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script src="../dist/js/sui.nav.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/arduino-light.min.css">
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 		<style type="text/css">
 			
 			.container {
@@ -20,11 +22,13 @@
 				position: relative;
 				padding-left: 220px;
 			}
+			
 			.nav-second {
 				position: relative;
 				width: 210px;
 				float: left;
 			}
+			
 			@media only screen and (max-width: 768px) {
 				.container .body {
 					padding: 0px;
@@ -47,11 +51,11 @@
 								<ul>
 									<li><a href="#">Level31</a></li>
 									<li><a href="#">Level32</a></li>
-									<li class="hide-in-horizontal"><a href="#">Level33</a>
+									<li><a href="#">Level33</a>
 										<ul>
 											<li><a href="#">Level331</a></li>
-											<li><a href="#">Level332</a></li>
-											<li><a href="#">Level333</a></li>
+											<li><a href="#">333 is hide</a></li>
+											<li class="hide-in-horizontal"><a href="#">Level333</a></li>
 											<li><a href="#">Level334</a></li>
 										</ul>
 										<span class="indicator">&gt;</span>
@@ -86,43 +90,49 @@
 		</div>
 		<br />
 		<div class="container ">
-			<div class="nav-second">
-			<div id="sui_nav2" class="sui-nav">
-				<script type="text/javascript">
-					document.write(document.getElementById('sui_nav').innerHTML);
-					var topbar;
-					$(function() {
-						topbar = $('#sui_nav').SuiNav({});
-						var navbar = $('#sui_nav2').SuiNav({});
-						$('.MenuToggle').click(function() {
-							console.log("toggle");
-							topbar.toggle();
-						});
-						$('.MenuOpen').click(function() {
-							console.log("open");
-							topbar.show();
-						});
-					});
-				</script>
-			</div>
+			<div id="nav_second" class="nav-second">
+				<div id="sui_nav2" class="sui-nav"></div>
 			</div>
 			<div class="body">
 				<p>
 					<button class="MenuToggle btn btn-default">单击此处显示/关闭导航</button>
 					<button class="MenuOpen btn btn-success">单击此处显示导航</button>
 				</p>
-				<p class="alert alert-info">
-					通过创建一个菜单，同步创建垂直导航、水平导航以及侧滑导航；<br />
-					<code>.sui-nav</code>默认为垂直导航，为<code>.sui-nav</code>添加<code>.horizontal</code>后转为水平导航；<br />
-					垂直导航、水平导航在分辨率&lt;=768px时自动隐藏，转为侧滑导航;<br />
-					<code>.hide-in-horizontal</code>仅在垂直导航中显示，包括侧滑导航<br />
-					<code>.show-in-horizontal</code>仅在水平导航中显示<br />
-					<code>.hide-in-mobile</code>仅在&gt;768px的屏幕显示<br />
-					<code>.show-in-mobile</code>仅在&lt;=768px的屏幕显示<br />
+				<p class="bg-info">
+					<ul class="list-group list-unstyled">
+						<li class="list-group-item">
+							通过创建一个导航菜单，同步创建垂直导航、水平导航以及侧滑导航；<br />
+							<code class="javascript">var topbar = $('#sui_nav').SuiNav({});<br />
+							var navbar = topbar.create('nav_second',{},{});</code>
+						</li>
+						<li class="list-group-item">
+							<code>.sui-nav</code>默认为垂直导航，为<code>.sui-nav</code>添加<code>.horizontal</code>后转为水平导航；<br />
+							垂直导航、水平导航在分辨率&lt;=768px时自动隐藏，转为侧滑导航;<br />
+						</li>
+						<li class="list-group-item">
+							<code>.show-in-horizontal</code>仅在水平导航中显示<br />
+							<code>.hide-in-horizontal</code>仅在垂直导航中显示，包括侧滑导航<br />
+							<code>.show-in-mobile</code>仅在&lt;=768px的屏幕显示<br />
+							<code>.hide-in-mobile</code>仅在&gt;768px的屏幕显示<br />
+						</li>
+						<li class="list-group-item">
+							所有方法：<br />
+							<code>SuiNav.show();</code> // 显示侧滑导航<br />
+							<code>SuiNav.hide();</code> // 隐藏侧滑导航<br />
+							<code>SuiNav.toggle();</code> // 切换显示侧滑导航<br />
+							<code>SuiNav.create();</code> // 复制创建一个水平、垂直导航<br />
+							<code>SuiNav.destory();</code> // 暂时不用
+						</li>
+						<li class="list-group-item">
+							其它说明：<br />
+							使用grunt打包，GitHub：<a href="https://github.com/suibinc/SuiNav" class="text-danger">https://github.com/suibinc/SuiNav</a>;<br />
+							<span class="text-warning">default.scss</span> 文件内为默认垂直导航样式；<br />
+							<span class="text-warning">horizontal.scss</span> 文件内为水平导航样式，水平导航对一二级菜单作了修改；
+						</li>
+					</ul>
 				</p>
 				<p>介绍以及代码等待完善中，更多请查看源码</p>
-				<pre>
-&lt;script type="text/javascript"&gt;
+				<pre style="background-color: #fff;"><code class='javascript'>&lt;script type="text/javascript"&gt;
     $('#sui_nav').SuiNav({
         toggleName: '.MenuToggle', // 控制菜单开关类
         direction: 'left', // 菜单切换方向
@@ -182,10 +192,24 @@
             &lt;/li>
         &lt;/ul>
     &lt;/div>
-&lt;/div>
-				</pre>
+&lt;/div></code></pre>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(function() {
+				var topbar = $('#sui_nav').SuiNav({});
+				var navbar = topbar.create('nav_second', {}, {});
+				$('.MenuToggle').click(function() {
+					console.log("toggle");
+					topbar.toggle();
+				});
+				$('.MenuOpen').click(function() {
+					console.log("open");
+					topbar.show();
+				});
+				hljs.initHighlightingOnLoad();
+			});
+		</script>
 	</body>
 
 </html>

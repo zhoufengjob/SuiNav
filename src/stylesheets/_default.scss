@@ -43,7 +43,6 @@
     li {
         > ul {
             display: none;
-            border-top: 1px solid #eee;
             >li {
                 float: none;
                 position: relative;
@@ -60,11 +59,14 @@
         border: 1px solid #eee;
         border-radius: 4px;
     }
-    .nav-border.nav-line li {
+    .nav-line li {
         border-bottom: 1px solid #eee;
     }
-    .nav-border.nav-line li:last-child {
+    .nav-line li:last-child {
         border-bottom: none;
+    }
+    .nav-line li > ul {
+        border-top: 1px solid #eee;
     }
     li.active>ul {
         display: block;
@@ -80,12 +82,10 @@
             display: block;
         }
     }
-    .show-in-horizontal{
+    .show-in-horizontal {
         display: none;
     }
-    .hide-in-horizontal{
-        
-    }
+    .hide-in-horizontal {}
 }
 .sui-nav.slide-nav {
     position: fixed;
